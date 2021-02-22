@@ -10,9 +10,10 @@ int main(){
     char simvol;
     for(int i = 0; i < q; ++i){
     	cin >> simvol;
-    	if(((int)simvol >= 48) && ((int)simvol <= 57)){
+    	if((simvol >= '0') && (simvol <= '9')){
     		sum += (int)simvol - 48;
     	}
+    	
     }
     cout << "Cумма чисел : " << sum << endl;
     return 0;
