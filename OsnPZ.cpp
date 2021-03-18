@@ -1,59 +1,68 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
+//Десятичное число из ф-ии Demical мы преобразуем в нужную систему счисления (которая была введена пользователем)
+void Perevod(int chislo,const int size){
+  char p;
+  int ostatok,sistem,n;
+  cin >> sistem; 
+  char* array = new char[n+1];
+  for(n = 0; chislo >= 1; ++n){
+    ostatok = chislo % sistem;
+    if((ostatok >= 0) && (ostatok <= 9)){
+      p = '0' + ostatok;
+    } else if(ostatok > 9){
+      p = 'A' + ostatok - 10;
+    }
+    chislo /= sistem;
+    array[n] = p;
+    }
 
-int Demical(const int& sistem, const string& chislo){
+  while(n >= 0){
+    cout << array[n];
+    --n;
+  }
+} 
+// Переводим в введеное число пользователя в дестичную систему
+int Demical(char arrayN[], const int size, const int sistem){
     int desin = 0;
     int razrad = 1;
     int m;
     
-	for(int i = 0; i < chislo.size(); ++i){
-		if(chislo[i] >= '0' && chislo[i] <= '9'){
-			m = (int)(chislo[i]) - '0';
-		} else if(chislo[i] >= 'A'){
-	    	m = (int)(chislo[i]) - 'A' + 10;
-	    }
-	    for(int j = chislo.size() - i - 1; j > 0; --j){
-	    	razrad *= sistem;
-	    }
+  for(int n = 0; n < size; ++n){
+    if(arrayN[n] >= '0' && arrayN[n] <= '9'){
+      m = (int)(arrayN[n]) - '0';
+    } else if(arrayN[n] >= 'A'){
+        m = (int)(arrayN[n]) - 'A' + 10;
+      }
+      for(int j = size - n - 1; j > 0; --j){
+        razrad *= sistem;
+      }
         m *= razrad;
         desin += m;
         razrad = 1;
     }
-    return desin;
+    delete [] arrayN;
+    Perevod(desin,size);
 }
-
-string Perevod(int& chislo, const int& sistem){
-    string newchislo;
-	char p;
-	int ostatok;
-
-    for(int i = 0; chislo >= 1; ++i){
-        ostatok = chislo % sistem;
-        if((ostatok >= 0) && (ostatok <= 9)){
-        	p = '0' + ostatok;
-        	newchislo += p;
-        } else if(ostatok >= 10){
-        	p = 'A' + ostatok - 10;
-        	newchislo +=p;
-        }
-        chislo /= sistem;
-    }
-    return newchislo;
-}
-
 
 int main(){
-	int sistem1,sistem2;
-	string chislo;
-	cin >> sistem1 >> chislo >> sistem2;
-    int desit = Demical(sistem1,chislo);
-    string result = Perevod(desit,sistem2);
-    cout << '\n';
-    for(int i = result.size() - 1; i >= 0; --i){
-    	cout << result[i];
+  setlocale(LC_ALL, "Russian");
+  cout << "Инструкция : сначала вводите систему счисления вводимого числа, далее само число, которое будет переводится";
+  cout << "(на конце числа пишете 'S') ,далее вводите ту систему счислени, в которую хотите перевести ваше число." ;
+  cout << " Пример : 16 2FFS 8" << '\n';
+  int sistem1,i;
+  char chislo;
+  cin >> sistem1;
+  char* array = new char[i+1];
+  for(i = 0; i < 2147483647; ++i){
+    cin >> chislo;
+    if(chislo == 'S'){
+      break;
+    } else {
+      array[i] = chislo;
     }
-    return 0;
-} 
-    
+  }
+  Demical(array,i,sistem1);
+  return 0;
+}
