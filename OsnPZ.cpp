@@ -5,9 +5,9 @@ int desit = 0;
 void Demical(char a, const int sistem1){
     desit *= sistem1;
     if(a >= '0' && a <= '9'){
-        desit += (int)(a) - '0';
+        desit += static_cast<int>(a) - '0';
     } else if(a >= 'A'){
-        desit += (int)(a) - 'A' + 10;
+        desit += static_cast<int>(a) - 'A' + 10;
     } 
     
 }
@@ -32,7 +32,6 @@ void Perevod(const int sistem2){
             p = 'A' + k - 10;
         }
         std::cout << p;
-        //desit -= max;
         max /= sistem2;
     }
 } 
@@ -50,6 +49,7 @@ int main(){
       Demical(chislo,sistem1);
     }
   }
+  std::cout << desit <<'\t';
   std :: cin >> sistem2;
   Perevod(sistem2);
 }
