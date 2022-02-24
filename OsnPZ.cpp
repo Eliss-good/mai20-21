@@ -25,11 +25,11 @@ void Perevod(const int sistem2){
     {  
         int m1 = desit / max;
         desit = desit - m1*max;
-        k=m1;
-        if((k <= 9)){
-            p = '0' + k;
+        
+        if((m1 <= 9)){
+            p = '0' + m1;
         } else {
-            p = 'A' + k - 10;
+            p = 'A' + m1 - 10;
         }
         std::cout << p;
         max /= sistem2;
